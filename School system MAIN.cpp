@@ -21,6 +21,9 @@ void studentInfo();
 void classInfo();
 void studentGrade();
 void adminMenu();
+void teacherInfo();
+void studentUpdate();
+void teacherUpdate();
 
 // Main Function 
 
@@ -149,7 +152,7 @@ void loginMenu() {
 
 }
 
-// Main Student Menu Function
+// Main Admin Menu Function
 
 void adminMenu() {
 	system("cls");
@@ -157,20 +160,40 @@ void adminMenu() {
 	std::cout << "\n1. Register New Student. " << std::endl;
 	std::cout << "2. Input Grades for Student. " << std::endl;
 	std::cout << "3. Student Information " << std::endl;
-	std::cout << "5. Main Menu. " << std::endl;
+	std::cout << "4. Register New Teacher. " << std::endl;
+	std::cout << "5. Teacher Information. " << std::endl;
+	std::cout << "6. Update Student Information. " << std::endl;
+	std::cout << "7. Update Teacher Information. " << std::endl;
+	std::cout << "8. Main Menu. " << std::endl;
 
 	std::cin >> check2;
 	switch (check2) {
 	case 1:
 		studentRegister();
+		adminMenu();
 		break;
 	case 2:
 		studentGrades();
+		adminMenu();
 		break;
 	case 3:
 		studentInfo();
+		adminMenu();
 		break;
 	case 4:
+		teacherRegister();
+		adminMenu();
+		break;
+	case 5:
+		teacherInfo();
+		adminMenu();
+	case 6:
+		studentUpdate();
+		adminMenu();
+	case 7:
+		teacherUpdate();
+		adminMenu();
+	case 8:
 		system("cls");
 		std::cout << "Please Return to Main Menu." << std::endl;
 		main();
@@ -207,9 +230,6 @@ void studentInfo() {
 	adminMenu();
 }
 
-
-// Functions for students grades
-
 void studentGrade() {
 	system("cls");
 	std::cout << "\n********  Students Grades  ********\n" << std::endl;
@@ -226,9 +246,41 @@ void studentGrade() {
 	loginMenu();
 }
 
+
+void teacherInfo() {
+	system("cls");
+
+	std::cout << "\n******** Teacher Information ********\n" << std::endl;
+	std::string teacherInfo;
+	std::ifstream readTeacherInfo("teacher.txt");
+
+	while (getline(readTeacherInfo, teacherInfo)) {
+		std::cout << teacherInfo << std::endl;
+	}
+
+	readTeacherInfo.close();
+
+	system("pause");
+	adminMenu();
+}
+
+
+// Functions for students grades
+
+
 void classInfo() {
 	std::cout << "\n********  Timetable  ********\n" << std::endl;
 
 	system("pause");
 	loginMenu();
+}
+
+void studentUpdate() {
+	std::ofstream outfile("test.txt");
+	rename("test.txt", );
+	
+}
+
+void teacherUpdate() {
+
 }
