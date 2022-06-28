@@ -16,11 +16,11 @@
 void login();
 void registration();
 void forgot();
-void loginMenu();
 void studentInfo();
 void classInfo();
 void studentGrade();
 void adminMenu();
+void defaultMenu();
 void teacherInfo();
 void studentUpdate();
 void teacherUpdate();
@@ -29,6 +29,7 @@ void teacherUpdate();
 
 int main() {
 	int check;
+	system("cls");
 	std::cout << "Welcome, Please Select Any of the Below Options:" << std::endl;
 	std::cout << "Main Menu:" << std::endl;
 	std::cout << "\n1. Login" << std::endl;
@@ -85,7 +86,7 @@ void login() {
 	if (count == 1) {
 		std::cout << "Welcome " << user << " your login was successful!" << std::endl;
 		std::cin.get();
-		loginMenu();
+		defaultMenu();
 	}
 	else {
 		std::cout << "There was a login error, please make sure your username and password were correct." << std::endl;
@@ -106,6 +107,7 @@ void registration() {
 	std::ofstream reg("data.txt");
 	reg << registerUser << " " << registerPw << std::endl;
 	std::cout << "Registration Completed. Please login. \n" << std::endl;
+	system("cls");
 	main();
 }
 
@@ -136,27 +138,47 @@ void forgot() {
 			std::cout << "Account Search Successful!" << std::endl;
 			std::cout << "Your Password is: " << sp;
 			std::cin.get();
-			system("cls");
-			main();
 		}
 		else {
 			std::cout << "Sorry, Your Username was Not Found." << std::endl;
 			std::cin.get();
-			main();
 		}
 		break;
 	}
 }
 
-void loginMenu() {
+// Guest & Student Menu
 
+void defaultMenu() {
+	system("cls");
+	int check2;
+	std::cout << "1. Student Information " << std::endl;
+	std::cout << "2. Teacher Information. " << std::endl;
+	std::cout << "3. Main Menu. " << std::endl;
+
+	std::cin >> check2;
+	switch (check2) {
+	case 1:
+		studentInfo();
+		defaultMenu();
+		break;
+	case 2:
+		teacherInfo();
+		defaultMenu();
+		break;
+	case 3:
+		std::cout << "Please Return to Main Menu." << std::endl;
+		system("cls");
+		main();
+	}
 }
 
 // Main Admin Menu Function
 
 void adminMenu() {
 	system("cls");
-	int check2;
+	int check3;
+	std::cout << "\n******** Welcome to Admin Menu ********\n" << std::endl;
 	std::cout << "\n1. Register New Student. " << std::endl;
 	std::cout << "2. Input Grades for Student. " << std::endl;
 	std::cout << "3. Student Information " << std::endl;
@@ -166,8 +188,8 @@ void adminMenu() {
 	std::cout << "7. Update Teacher Information. " << std::endl;
 	std::cout << "8. Main Menu. " << std::endl;
 
-	std::cin >> check2;
-	switch (check2) {
+	std::cin >> check3;
+	switch (check3) {
 	case 1:
 		studentRegister();
 		adminMenu();
@@ -194,8 +216,8 @@ void adminMenu() {
 		teacherUpdate();
 		adminMenu();
 	case 8:
-		system("cls");
 		std::cout << "Please Return to Main Menu." << std::endl;
+		system("cls");
 		main();
 	}
 }
@@ -227,7 +249,7 @@ void studentInfo() {
 	readStudentInfo.close();
 
 	system("pause");
-	adminMenu();
+	main();
 }
 
 void studentGrade() {
@@ -243,7 +265,7 @@ void studentGrade() {
 	readStudentGrade.close();
 
 	system("pause");
-	loginMenu();
+	main();
 }
 
 
@@ -261,7 +283,7 @@ void teacherInfo() {
 	readTeacherInfo.close();
 
 	system("pause");
-	adminMenu();
+	main();
 }
 
 
@@ -272,15 +294,14 @@ void classInfo() {
 	std::cout << "\n********  Timetable  ********\n" << std::endl;
 
 	system("pause");
-	loginMenu();
+	main();
 }
 
-void studentUpdate() {
+/*void studentUpdate() {
 	std::ofstream outfile("test.txt");
 	rename("test.txt", );
-	
 }
 
 void teacherUpdate() {
 
-}
+}*/
