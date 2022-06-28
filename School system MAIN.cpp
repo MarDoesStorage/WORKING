@@ -16,8 +16,7 @@ void forgot();
 void loginMenu();
 void studentInfo();
 void classInfo();
-void studentGrades();
-void teacherInfo();
+void studentGrade();
 
 // Main Function 
 
@@ -54,6 +53,7 @@ int main() {
 // Function for Loggin In
 
 void login() {
+	system("cls");
 	int count;
 	std::string user, password, un, pw;
 	std::cout << "Username: ";
@@ -83,8 +83,8 @@ void login() {
 // Function for Registering New Users
 
 void registration() {
-	std::string registerUser, registerPw, ru, rp;
 	system("cls");
+	std::string registerUser, registerPw, ru, rp;
 	std::cout << "Enter Your New Username: ";
 	std::cin >> registerUser;
 	std::cout << "Enter Your New Password: ";
@@ -141,21 +141,26 @@ void loginMenu() {
 	system("cls");
 	int check2;
 	std::cout << "\n1. Register New Student. " << std::endl;
-	std::cout << "2. Student Information " << std::endl;
-	std::cout << "3. Class Timetable. " << std::endl;
-	std::cout << "4. Main Menu. " << std::endl;
+	std::cout << "2. Input Grades for Student. " << std::endl;
+	std::cout << "3. Student Information " << std::endl;
+	std::cout << "4. Class Timetable. " << std::endl;
+	std::cout << "5. Main Menu. " << std::endl;
 
 	std::cin >> check2;
 	switch (check2) {
 	case 1:
 		studentRegister();
+		break;
 	case 2:
-		studentInfo();
+		studentGrades();
 		break;
 	case 3:
-		classInfo();
+		studentInfo();
 		break;
 	case 4:
+		classInfo();
+		break;
+	case 5:
 		system("cls");
 		std::cout << "Please Return to Main Menu." << std::endl;
 		main();
@@ -166,12 +171,25 @@ void loginMenu() {
 
 void studentInfo() {
 	system("cls");
+
+	std::cout << "\n******** Student Information ********\n" << std::endl;
 	std::string studentInfo;
 	std::ifstream readStudentInfo("student.txt");
 
 	while (getline(readStudentInfo, studentInfo)) {
 		std::cout << studentInfo << std::endl;
 	}
+
+	std::cout << "\n********  Students Grades  ********\n" << std::endl;
+	std::string studentGrade;
+	std::ifstream readStudentGrade("grades.txt");
+
+	while (getline(readStudentGrade, studentGrade)) {
+		std::cout << studentGrade << std::endl;
+	}
+
+	readStudentGrade.close();
+
 
 	readStudentInfo.close();
 
@@ -180,17 +198,19 @@ void studentInfo() {
 }
 
 
-// Functions for all Student Information
+// Functions for students grades
 
-void studentGrades() {
+void studentGrade() {
+	system("cls");
 	std::cout << "\n********  Students Grades  ********\n" << std::endl;
+	std::string studentGrade;
+	std::ifstream readStudentGrade("grades.txt");
 
-	system("pause");
-	loginMenu();
-}
+	while (getline(readStudentGrade, studentGrade)) {
+		std::cout << studentGrade << std::endl;
+	}
 
-void teacherInfo() {
-	std::cout << "\n********  Students Teachers  ********\n" << std::endl;
+	readStudentGrade.close();
 
 	system("pause");
 	loginMenu();
