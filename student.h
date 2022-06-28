@@ -6,6 +6,9 @@
 #include <cstdlib>
 #include <conio.h>
 #include <sstream>
+#include <cstring>
+#include <iomanip>
+#include <ctime>
 
 typedef struct student {
 	std::string firstName;
@@ -54,4 +57,8 @@ void studentGrades() {
 	std::cout << "New Student Information has been Added! \n";
 	outfile.close();
 	return;
+}
+
+void studentUpdate() {
+
 }
