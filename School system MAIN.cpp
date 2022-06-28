@@ -6,6 +6,9 @@
 #include <cstdlib>
 #include <conio.h>
 #include <sstream>
+#include <cstring>
+#include <iomanip>
+#include <ctime>
 
 #include "student.h"
 #include "teacher.h"
@@ -17,6 +20,7 @@ void loginMenu();
 void studentInfo();
 void classInfo();
 void studentGrade();
+void adminMenu();
 
 // Main Function 
 
@@ -50,20 +54,26 @@ int main() {
 	}
 }
 
-// Function for Loggin In
+// Function for Logging in
 
 void login() {
 	system("cls");
-	int count;
+	int count = 0;
 	std::string user, password, un, pw;
 	std::cout << "Username: ";
 	std::cin >> user;
 	std::cout << "Password: ";
 	std::cin >> password;
 
+	
+
 	std::ifstream input("data.txt");
 	while (input >> un >> pw) {
-		if (un == user && pw == password) {
+		if (user == "admin" && password == "admin101") {
+			count = 1;
+			adminMenu();
+		}
+		else if(un == user && pw == password) {
 			count = 1;
 			system("cls");
 		}
@@ -135,15 +145,18 @@ void forgot() {
 	}
 }
 
+void loginMenu() {
+
+}
+
 // Main Student Menu Function
 
-void loginMenu() {
+void adminMenu() {
 	system("cls");
 	int check2;
 	std::cout << "\n1. Register New Student. " << std::endl;
 	std::cout << "2. Input Grades for Student. " << std::endl;
 	std::cout << "3. Student Information " << std::endl;
-	std::cout << "4. Class Timetable. " << std::endl;
 	std::cout << "5. Main Menu. " << std::endl;
 
 	std::cin >> check2;
@@ -158,9 +171,6 @@ void loginMenu() {
 		studentInfo();
 		break;
 	case 4:
-		classInfo();
-		break;
-	case 5:
 		system("cls");
 		std::cout << "Please Return to Main Menu." << std::endl;
 		main();
@@ -194,7 +204,7 @@ void studentInfo() {
 	readStudentInfo.close();
 
 	system("pause");
-	loginMenu();
+	adminMenu();
 }
 
 
