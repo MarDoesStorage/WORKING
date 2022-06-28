@@ -7,10 +7,13 @@
 #include <conio.h>
 #include <sstream>
 
+#include "student.h"
+#include "teacher.h"
+
 void login();
 void registration();
 void forgot();
-void studentMenu();
+void loginMenu();
 void studentInfo();
 void classInfo();
 void studentGrades();
@@ -69,7 +72,7 @@ void login() {
 	if (count == 1) {
 		std::cout << "Welcome " << user << " your login was successful!" << std::endl;
 		std::cin.get();
-		studentMenu();
+		loginMenu();
 	}
 	else {
 		std::cout << "There was a login error, please make sure your username and password were correct." << std::endl;
@@ -134,22 +137,25 @@ void forgot() {
 
 // Main Student Menu Function
 
-void studentMenu() {
+void loginMenu() {
 	system("cls");
 	int check2;
-	std::cout << "\n1. Student Information (Reports, Teachers, ETC). " << std::endl;
-	std::cout << "2. Class Timetable. " << std::endl;
-	std::cout << "3. Main Menu. " << std::endl;
+	std::cout << "\n1. Register New Student. " << std::endl;
+	std::cout << "2. Student Information " << std::endl;
+	std::cout << "3. Class Timetable. " << std::endl;
+	std::cout << "4. Main Menu. " << std::endl;
 
 	std::cin >> check2;
 	switch (check2) {
 	case 1:
+		studentRegister();
+	case 2:
 		studentInfo();
 		break;
-	case 2:
+	case 3:
 		classInfo();
 		break;
-	case 3:
+	case 4:
 		system("cls");
 		std::cout << "Please Return to Main Menu." << std::endl;
 		main();
@@ -170,7 +176,7 @@ void studentInfo() {
 	readStudentInfo.close();
 
 	system("pause");
-	studentMenu();
+	loginMenu();
 }
 
 
@@ -180,19 +186,19 @@ void studentGrades() {
 	std::cout << "\n********  Students Grades  ********\n" << std::endl;
 
 	system("pause");
-	studentMenu();
+	loginMenu();
 }
 
 void teacherInfo() {
 	std::cout << "\n********  Students Teachers  ********\n" << std::endl;
 
 	system("pause");
-	studentMenu();
+	loginMenu();
 }
 
 void classInfo() {
 	std::cout << "\n********  Timetable  ********\n" << std::endl;
 
 	system("pause");
-	studentMenu();
+	loginMenu();
 }
